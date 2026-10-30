@@ -1,0 +1,38 @@
+# Sinerli Apps — shell Tauri bersama. Dibuat per aplikasi oleh scripts/build-app.mjs
+# (nama paket & identifier diganti otomatis).
+[package]
+name = "sinerli-app"
+version = "1.0.0"
+description = "Sinerli Apps"
+authors = ["Gadtan x Gallen <gadtanbp@gmail.com>"]
+edition = "2021"
+license = "UNLICENSED"
+publish = false
+
+[lib]
+name = "sinerli_app_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-opener = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-deep-link = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+base64 = "0.22"
+
+[target.'cfg(any(target_os = "macos", windows, target_os = "linux"))'.dependencies]
+tauri-plugin-single-instance = { version = "2", features = ["deep-link"] }
+keyring = { version = "3", features = ["apple-native", "windows-native", "linux-native-sync-persistent", "crypto-rust"] }
+
+# Biner kecil & cepat: optimasi ukuran, tanpa simbol debug.
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true

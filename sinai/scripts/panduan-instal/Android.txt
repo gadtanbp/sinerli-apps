@@ -1,0 +1,16 @@
+Sinai __VERSION__ untuk Android
+================================
+
+File: Sinai-__VERSION__.apk   (Android 8.0 ke atas, semua jenis prosesor)
+
+1. Salin APK ke HP (atau unduh langsung dari https://sinerli.com/sinai).
+2. Ketuk berkasnya. Bila diminta, izinkan "Instal aplikasi tak dikenal"
+   untuk aplikasi pembuka (Files / Chrome), lalu ketuk Instal.
+3. Buka Sinai → "Masuk dengan Sinerli" → setujui di browser.
+   Model Sinerli AI langsung tersambung sesuai paket Anda.
+
+Pembaruan: Sinai memeriksa versi terbaru di Sinerli setiap kali dibuka.
+Bila ada versi wajib, ketuk "Perbarui sekarang" lalu "Perbarui" di layar
+Android. Data dan login tetap aman.
+
+Copyright © 2026 Gadtan x Gallen. All rights reserved.

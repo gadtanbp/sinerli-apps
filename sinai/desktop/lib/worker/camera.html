@@ -1,0 +1,33 @@
+<!doctype html>
+<!-- Sinai — Copyright © 2026 Gadtan x Gallen. All rights reserved. -->
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob: mediastream:">
+<title>Kamera</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #111; color: #eee; font: 14px system-ui, -apple-system, "Segoe UI", Ubuntu, sans-serif; }
+  body { display: flex; flex-direction: column; }
+  .stage { flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  video, canvas { max-width: 100%; max-height: 100%; border-radius: 10px; }
+  canvas { display: none; }
+  .bar { display: flex; gap: 10px; justify-content: center; align-items: center; padding: 14px; }
+  button { border: 0; border-radius: 9px; padding: 9px 18px; font: inherit; cursor: pointer; background: #2a2b36; color: #eee; }
+  button.primary { background: #6e6bff; color: #fff; font-weight: 600; }
+  button:disabled { opacity: .5; cursor: default; }
+  select { background: #2a2b36; color: #eee; border: 0; border-radius: 8px; padding: 8px; font: inherit; max-width: 220px; }
+  .msg { color: #f99; padding: 20px; text-align: center; }
+</style>
+</head>
+<body>
+  <div class="stage"><video id="v" autoplay playsinline muted></video><canvas id="c"></canvas><div class="msg" id="msg" hidden></div></div>
+  <div class="bar">
+    <select id="dev" title="Pilih kamera"></select>
+    <button id="retake" hidden>Ulangi</button>
+    <button id="cancel">Batal</button>
+    <button id="shot" class="primary" disabled>Ambil foto</button>
+    <button id="use" class="primary" hidden>Lampirkan</button>
+  </div>
+<script src="camera.js"></script>
+</body>
+</html>

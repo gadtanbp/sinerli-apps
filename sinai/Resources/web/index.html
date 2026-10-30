@@ -1,0 +1,151 @@
+<!doctype html>
+<!-- Sinai — Copyright © 2026 Gadtan x Gallen. All rights reserved. -->
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'none'; frame-src sinai-preview: http: https:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Sinai</title>
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/xp.css">
+</head>
+<body>
+<div id="app" class="booting">
+  <div class="tint" aria-hidden="true"></div>
+
+  <aside id="sidebar">
+    <div class="sb-head drag">
+      <div class="traffic-space"></div>
+      <button class="icon-btn" id="btn-collapse" title="Sembunyikan sidebar (⌘\)"></button>
+    </div>
+    <div class="sb-brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div class="brand-text"><b>Sinai</b><span id="brand-sub">AI Chat &amp; Code</span></div>
+    </div>
+    <div class="mode-switch" role="tablist">
+      <button data-mode="chat" class="active"><i data-icon="chat"></i>Chat</button>
+      <button data-mode="code"><i data-icon="code"></i>Code</button>
+      <button data-mode="design"><i data-icon="palette"></i>Design</button>
+      <span class="mode-pill"></span>
+    </div>
+    <button class="new-btn" id="btn-new"><i data-icon="plus"></i><span>Percakapan baru</span><kbd>⌘N</kbd></button>
+    <label class="search">
+      <i data-icon="search"></i>
+      <input id="search" type="text" placeholder="Cari percakapan…" autocomplete="off" spellcheck="false">
+    </label>
+    <div id="conv-list" class="conv-list"></div>
+    <div class="sb-foot">
+      <button class="sb-foot-btn" id="btn-settings"><i data-icon="settings"></i><span>Pengaturan</span></button>
+      <div class="provider-status" id="provider-status"></div>
+    </div>
+  </aside>
+
+  <main id="main">
+    <header id="topbar" class="drag">
+      <button class="icon-btn" id="btn-expand" title="Tampilkan sidebar (⌘\)"></button>
+      <div class="title-wrap">
+        <div id="conv-title" class="conv-title">Sinai</div>
+        <div id="conv-sub" class="conv-sub"></div>
+      </div>
+      <div class="top-actions">
+        <button class="chip" id="chip-workspace" hidden><i data-icon="folder"></i><span></span></button>
+        <button class="chip" id="chip-permission" hidden><i data-icon="shield"></i><span></span></button>
+        <button class="chip" id="chip-project" hidden><i data-icon="box"></i><span></span></button>
+        <button class="chip" id="chip-usage" title="Pemakaian token &amp; batas model"><i data-icon="target"></i><span></span></button>
+        <button class="icon-btn" id="btn-export" title="Ekspor percakapan"><i data-icon="download"></i></button>
+        <button class="icon-btn flip-h" id="btn-panel" title="Panel"></button>
+      </div>
+    </header>
+
+    <section id="scroller">
+      <div id="messages"></div>
+      <div id="empty" class="empty" hidden></div>
+    </section>
+
+    <footer id="composer-wrap">
+      <button id="jump-bottom" class="jump" hidden title="Ke bawah"><i data-icon="arrowDown"></i></button>
+      <div id="todo-panel" class="todo-panel" hidden></div>
+      <div id="composer" class="composer">
+        <div id="attachments" class="attachments" hidden></div>
+        <div id="mention-pop" class="mention-pop glass-pop" hidden></div>
+        <textarea id="input" rows="1" placeholder="Tanyakan apa saja…" spellcheck="false"></textarea>
+        <div class="composer-bar">
+          <div class="left">
+            <button class="icon-btn" id="btn-attach" title="Lampirkan file"><i data-icon="clip"></i></button>
+            <button class="icon-btn" id="btn-capture" title="Rekam, kamera, atau tangkapan layar"><i data-icon="camera"></i></button>
+            <button class="icon-btn" id="btn-dictate" title="Dikte suara (ketik dengan berbicara)"><i data-icon="mic"></i></button>
+            <button class="icon-btn" id="btn-skill" title="Gunakan skill"><i data-icon="bulb"></i></button>
+            <button class="toggle" id="btn-template" title="Template desain"><i data-icon="layers"></i><span>Template</span></button>
+            <button class="toggle" id="btn-web" title="Akses web (pencarian & baca halaman)"><i data-icon="globe"></i><span>Web</span></button>
+            <button class="toggle" id="btn-team" title="Tim Agen: agen khusus untuk perencanaan, UI, sistem, data, bug test & keamanan" hidden><i data-icon="layers"></i><span>Tim</span></button>
+            <button class="toggle" id="btn-level" title="Mode kecerdasan"><i data-icon="sparkle"></i><span>Seimbang</span></button>
+            <button class="toggle" id="btn-style" title="Gaya jawaban" hidden><i data-icon="pen"></i><span>Normal</span></button>
+          </div>
+          <div class="right">
+            <button class="usage-ring" id="usage-ring" title="Pemakaian konteks" hidden><svg viewBox="0 0 36 36"><circle class="track" cx="18" cy="18" r="14"/><circle class="bar" cx="18" cy="18" r="14"/></svg></button>
+            <button class="model-btn" id="btn-model" title="Pilih model (⇧⌘M)"><i data-icon="cpu"></i><span>Pilih model</span><i data-icon="chevronDown"></i></button>
+            <button class="send-btn" id="btn-send" title="Kirim (↵)"><i data-icon="arrowUp"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="foot-note" id="foot-note">AI bisa keliru. Periksa kembali informasi penting.</div>
+    </footer>
+  </main>
+
+  <aside id="panel" class="panel" hidden>
+    <div class="panel-resizer" id="panel-resizer"></div>
+    <div class="panel-head drag" id="panel-head"></div>
+    <div class="panel-body" id="panel-body"></div>
+  </aside>
+</div>
+
+<div id="overlay-root"></div>
+<div id="toast-root"></div>
+
+<script src="vendor/marked.js"></script>
+<script src="vendor/purify.js"></script>
+<script src="vendor/highlight.js"></script>
+<script src="js/polyfills.js"></script>
+<script src="js/native.js"></script>
+<script src="js/util.js"></script>
+<script src="js/markdown.js"></script>
+<script src="js/deck.js"></script>
+<script src="js/htmldeck.js"></script>
+<script src="js/board.js"></script>
+<script src="js/artifacts.js"></script>
+<script src="js/files.js"></script>
+<script src="js/outputs.js"></script>
+<script src="js/imagegen.js"></script>
+<script src="js/perception.js"></script>
+<script src="js/templates.js"></script>
+<script src="js/store.js"></script>
+<script src="js/providers.js"></script>
+<script src="js/profiles.js"></script>
+<script src="js/health.js"></script>
+<script src="js/prompts.js"></script>
+<script src="js/mcp.js"></script>
+<script src="js/connectors.js"></script>
+<script src="js/mirror.js"></script>
+<script src="js/sinerli.js"></script>
+<script src="js/updater.js"></script>
+<script src="js/sync.js"></script>
+<script src="js/skills-builtin.js"></script>
+<script src="js/skills.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/repair.js"></script>
+<script src="js/hooks.js"></script>
+<script src="js/team.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/evals.js"></script>
+<script src="js/ui-base.js"></script>
+<script src="js/ui-chat.js"></script>
+<script src="js/browser.js"></script>
+<script src="js/ui-panel.js"></script>
+<script src="js/ui-sidebar.js"></script>
+<script src="js/ui-settings.js"></script>
+<script src="js/ui-evals.js"></script>
+<script src="js/ui-remote.js"></script>
+<script src="js/responsive.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

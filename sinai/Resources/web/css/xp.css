@@ -1,0 +1,97 @@
+/* Sinai — Copyright © 2026 Gadtan x Gallen. All rights reserved.
+   Tema "Sinai Klasik": nuansa desktop awal 2000-an — bilah judul biru
+   bergradasi, panel krem, tombol membulat bertepi, font Tahoma/Verdana.
+   Dimuat setelah app.css dan selalu aktif (Sinai tidak punya mode gelap).
+   Semua efek kaca/blur dimatikan supaya ringan di perangkat RAM kecil. */
+html:not(#sinai-xp), html:not(#sinai-xp)[data-theme] {
+  --font: Tahoma, Verdana, "Segoe UI", "DejaVu Sans", "Noto Sans", Arial, sans-serif;
+  --mono: "Lucida Console", Consolas, "Courier New", "DejaVu Sans Mono", monospace;
+  --fs: 13px;
+  --accent: #245edb;
+  --accent-2: #3c8cf0;
+  --accent-grad: linear-gradient(180deg, #3a8cf5 0%, #2463d6 45%, #1c4fbd 100%);
+  --danger: #c4331d; --ok: #2c9c32; --warn: #d98c00;
+  --r-sm: 3px; --r: 5px; --r-lg: 7px; --r-xl: 8px;
+  --text: #000000; --text-2: #333333; --text-3: #6d6d6d;
+  --glass: #ece9d8; --glass-strong: #f5f3ea; --glass-weak: #f1efe2; --glass-hover: #fdfcf6;
+  --fill: rgba(0, 0, 60, .05); --fill-2: rgba(0, 0, 60, .09);
+  --stroke: #9da5b8; --stroke-2: #c7c3b0;
+  --hl: inset 0 1px 0 #ffffff;
+  --shadow: 2px 2px 6px rgba(0, 0, 0, .25); --shadow-lg: 4px 4px 14px rgba(0, 0, 0, .35);
+  --code-bg: #ffffff; --code-head: #e3e0cf;
+  --overlay-bg: #ece9d8; --sheet-bg: #ece9d8; --scrim: rgba(0, 0, 0, .25);
+  --tint-a: transparent; --tint-b: transparent; --tint-c: transparent;
+  --solid-bg: #ece9d8;
+  color-scheme: light;
+}
+*, *::before, *::after { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+html, body { background: #3a6ea5 !important; }
+body { font-family: var(--font) !important; -webkit-font-smoothing: auto; }
+#app { background: #ece9d8 !important; }
+.tint { display: none !important; }
+
+/* bilah judul & kepala panel: biru Luna */
+.sb-head, .work-head, .panel-head, .mirror-bar {
+  background: linear-gradient(180deg, #0a5fe0 0%, #2a7af5 8%, #1b66e6 40%, #0f55d3 88%, #0a46b3 100%) !important;
+  color: #fff !important; border-bottom: 1px solid #0831a8 !important; text-shadow: 1px 1px 0 rgba(0, 0, 40, .45);
+}
+.sb-head .icon-btn, .work-head .icon-btn, .panel-head .icon-btn, .work-head button, .panel-head button { color: #fff !important; }
+.work-head .icon-btn:hover, .panel-head .icon-btn:hover, .sb-head .icon-btn:hover { background: rgba(255, 255, 255, .18) !important; border-radius: 3px; }
+
+/* sidebar seperti panel tugas Explorer */
+#sidebar { background: linear-gradient(180deg, #7ba2e7 0%, #6375d6 100%) !important; border-right: 1px solid #3d5bb8 !important; color: #fff; }
+#sidebar .sb-brand { background: linear-gradient(180deg, #ffffff 0%, #c6d3f7 100%); color: #10295c; border: 1px solid #fff; border-radius: 6px 6px 0 0; margin: 8px 8px 0; padding: 8px 10px; }
+#sidebar .brand-text b { color: #10295c; }
+#sidebar .brand-text span { color: #3b5a9e !important; }
+.conv-item { color: #10295c !important; background: transparent; border-radius: 0 !important; }
+.conv-item:hover { background: #e4ebfb !important; text-decoration: underline; }
+.conv-item.active, .conv-item.is-active { background: #316ac5 !important; color: #fff !important; }
+.conv-group, .sb-link { color: #fff !important; }
+#sidebar .conv-list, #sidebar nav, #sidebar .sb-scroll { background: #d6dff7; border: 1px solid #fff; margin: 0 8px; }
+
+/* mode switch → tombol taskbar */
+.mode-switch { background: linear-gradient(180deg, #3168d5, #2052c5) !important; border: 1px solid #0c3a9e !important; border-radius: 4px !important; padding: 2px !important; }
+.mode-switch button { color: #fff !important; border-radius: 3px !important; text-shadow: 1px 1px 0 rgba(0, 0, 0, .3); }
+.mode-switch button.active { background: linear-gradient(180deg, #1e4fb8, #183f9a) !important; box-shadow: inset 1px 1px 2px rgba(0, 0, 0, .45) !important; }
+.mode-pill { display: none !important; }
+
+/* tombol: gaya klasik membulat */
+.btn, .new-btn, .chip, .model-btn, .seg button, .icon-btn.bordered, button.btn {
+  font-family: var(--font) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #ecebe6 86%, #d6d0c5 100%) !important; color: #000 !important;
+  border: 1px solid #003c74 !important; border-radius: 3px !important; box-shadow: none !important;
+}
+.btn:hover, .new-btn:hover, .chip:hover, .model-btn:hover { box-shadow: inset 0 0 0 2px #f8b636 !important; }
+.btn:active, .new-btn:active { background: linear-gradient(180deg, #e3e2da, #f2f1ec) !important; }
+.btn.primary, .send-btn, .btn-primary {
+  background: linear-gradient(180deg, #4fb447 0%, #3a9b34 50%, #2f8a2a 100%) !important; color: #fff !important; border: 1px solid #1d6a1a !important; text-shadow: 1px 1px 0 rgba(0, 0, 0, .3);
+}
+.new-btn { margin: 8px !important; }
+
+/* area kerja & pesan */
+.msg, .art-card, .prov-card, .review-card, .tool, .think, .todo-panel { background: #ffffff !important; border: 1px solid #919b9c !important; border-radius: 3px !important; box-shadow: none !important; }
+.composer, .composer-bar { background: #ffffff !important; border: 1px solid #7f9db9 !important; border-radius: 3px !important; box-shadow: none !important; }
+input, textarea, select { font-family: var(--font) !important; border: 1px solid #7f9db9 !important; border-radius: 0 !important; background: #fff !important; color: #000 !important; }
+input:focus, textarea:focus, select:focus { outline: 1px dotted #000 !important; outline-offset: -3px; box-shadow: none !important; }
+.md code, code { font-family: var(--mono) !important; }
+.md pre, pre { background: #ffffff !important; border: 1px solid #919b9c !important; border-radius: 0 !important; }
+
+/* menu, popover, dialog: jendela klasik */
+.menu, .model-pop, .usage-pop, [role="menu"], .modal, .sheet, dialog {
+  background: #ffffff !important; border: 1px solid #0831a8 !important; border-radius: 4px !important; box-shadow: var(--shadow-lg) !important;
+}
+.modal > header, .sheet > header, dialog > header { background: linear-gradient(180deg, #0a5fe0, #0f55d3 88%, #0a46b3) !important; color: #fff !important; }
+.menu-item:hover, [role="menuitem"]:hover { background: #316ac5 !important; color: #fff !important; }
+
+/* sakelar & centang */
+.switch, .toggle { border-radius: 2px !important; }
+
+/* scrollbar klasik (WebKit/Chromium) */
+::-webkit-scrollbar { width: 17px; height: 17px; background: #f4f3ee; }
+::-webkit-scrollbar-thumb { background: linear-gradient(90deg, #cad8fc, #b5c9f8); border: 1px solid #93a8e0; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(90deg, #dbe5ff, #c4d4fb); }
+::-webkit-scrollbar-button { display: none; }
+
+/* lancar: tanpa animasi berat */
+* { transition-duration: 0s !important; animation-duration: 0s !important; }
+.think *, .spinner, .loading, [class*="spin"] { animation-duration: 1s !important; }

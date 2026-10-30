@@ -1,0 +1,37 @@
+SINAI — AI Chat & Coding Agent untuk Linux
+==========================================
+
+Untuk Linux 64-bit (x86_64). Pilih format yang sesuai distro Anda:
+
+A. Ubuntu / Debian / Linux Mint / Pop!_OS — sinai___VERSION___amd64.deb
+     sudo apt install ./sinai___VERSION___amd64.deb
+   Sinai muncul di menu aplikasi. Hapus dengan:  sudo apt remove sinai
+
+B. Distro apa pun — Sinai-__VERSION__-x86_64.AppImage
+     chmod +x Sinai-__VERSION__-x86_64.AppImage
+     ./Sinai-__VERSION__-x86_64.AppImage
+   Jika muncul error FUSE, pasang libfuse2
+   (Ubuntu 22.04+: sudo apt install libfuse2t64 atau libfuse2).
+
+C. Arsip biasa — Sinai-__VERSION__-x64.tar.gz
+     tar -xzf Sinai-__VERSION__-x64.tar.gz
+     cd Sinai-__VERSION__-x64 && ./sinai
+
+Pertama kali dibuka: tempel API key, klik "Hubungkan & deteksi model",
+pilih model, mulai.
+
+Data:     ~/.config/Sinai
+API key:  dienkripsi lewat keyring sistem (GNOME Keyring / KWallet). Tanpa
+          keyring, disimpan di file yang hanya bisa dibaca akun Anda.
+
+Opsional
+- tesseract-ocr tesseract-ocr-ind — OCR gambar & PDF hasil scan
+- p7zip-full (atau 7zip)          — arsip .7z/.rar dan zip berkata sandi
+- qpdf                            — PDF terkunci & enkripsi PDF
+- ffmpeg                          — konversi video ke MP4 bila diperlukan
+
+Fitur khusus macOS yang tidak ada di Linux: dikte suara langsung,
+transkripsi audio, rekam audio sistem, Quick Look, dan integrasi
+Kalender/Kontak/Mail/Shortcuts.
+
+Copyright © 2026 Gadtan x Gallen. All rights reserved.

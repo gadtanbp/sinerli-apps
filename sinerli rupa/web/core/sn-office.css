@@ -1,0 +1,18 @@
+/* Sinerli Apps — tema gelap untuk Dokum, Hitara, Present (kerangka .so-*).
+   Kertas dokumen, slide, dan sel lembar kerja tetap putih seperti aslinya. */
+#snAcctSlot { display: inline-flex; margin-left: 4px; }
+html[data-sn-theme="dark"] body.so-app {
+  --so-bg: #121419; --so-surface: #1b1e25; --so-surface-2: #22252e; --so-border: #2e323d; --so-border-strong: #454a59;
+  --so-text: #e6e8ee; --so-muted: #a4a9b9; --so-faint: #6f7587; --so-icon: #c3c7d3; --so-hover: #272b35; --so-pressed: #323745;
+  --so-ui-white: #1b1e25; --so-shadow: 0 14px 34px rgba(0, 0, 0, .5), 0 2px 6px rgba(0, 0, 0, .3);
+  color-scheme: dark;
+}
+html[data-sn-theme="dark"] body.sd-app { --so-accent-soft: #272a4f; --so-accent-dark: #a5a8ff; }
+html[data-sn-theme="dark"] body.sx-app { --so-accent-soft: #15302d; --so-accent-dark: #5fd1c2; }
+html[data-sn-theme="dark"] body.ss-app { --so-accent-soft: #3a1a2b; --so-accent-dark: #f58ab8; }
+html[data-sn-theme="dark"] .so-app input, html[data-sn-theme="dark"] .so-app select, html[data-sn-theme="dark"] .so-app textarea { color: var(--so-text); background-color: var(--so-surface-2); border-color: var(--so-border-strong); }
+/* Kertas tetap putih */
+html[data-sn-theme="dark"] .sd-print-page, html[data-sn-theme="dark"] .sd-margin-preview .mp-page, html[data-sn-theme="dark"] .sd-tpl-thumb,
+html[data-sn-theme="dark"] .sx-grid, html[data-sn-theme="dark"] .sx-cell-editor, html[data-sn-theme="dark"] .sx-obj { --so-ui-white: #fff; }
+html[data-sn-theme="dark"] .sx-grid textarea, html[data-sn-theme="dark"] .sd-editor { color: #000; }
+html[data-sn-theme="dark"] .so-loading { background: var(--so-bg); color: var(--so-text); }

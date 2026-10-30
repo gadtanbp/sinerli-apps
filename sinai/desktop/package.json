@@ -1,0 +1,137 @@
+{
+  "name": "sinai",
+  "productName": "Sinai",
+  "version": "1.1.2",
+  "description": "Sinai — AI Chat & Code",
+  "author": "Gadtan x Gallen <gadtanbp@gmail.com>",
+  "copyright": "Copyright © 2026 Gadtan x Gallen. All rights reserved.",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "icons": "electron scripts/make-icons.js",
+    "dist:win": "electron-builder --win -c.directories.output=../dist/Windows",
+    "dist:linux": "electron-builder --linux -c.directories.output=../dist/Linux",
+    "dist": "npm run dist:win && npm run dist:linux"
+  },
+  "dependencies": {
+    "pdf-lib": "1.17.1"
+  },
+  "devDependencies": {
+    "electron": "44.5.0",
+    "electron-builder": "26.16.1",
+    "pdfjs-dist": "6.4.299"
+  },
+  "build": {
+    "appId": "app.sinai.desktop",
+    "productName": "Sinai",
+    "copyright": "Copyright © 2026 Gadtan x Gallen. All rights reserved.",
+    "directories": {
+      "output": "../dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "lib/**/*",
+      "package.json",
+      "!scripts/**",
+      "!**/*.map"
+    ],
+    "extraResources": [
+      {
+        "from": "../Resources/web",
+        "to": "web",
+        "filter": [
+          "**/*",
+          "!**/.DS_Store"
+        ]
+      },
+      {
+        "from": "build/icon.png",
+        "to": "icon.png"
+      }
+    ],
+    "asar": true,
+    "fileAssociations": [],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "Sinai-${version}-${arch}.${ext}"
+    },
+    "portable": {
+      "artifactName": "Sinai-${version}-Portable.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Sinai",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "artifactName": "Sinai-Setup-${version}-${arch}.${ext}"
+    },
+    "linux": {
+      "icon": "build/icons",
+      "category": "Development",
+      "executableName": "sinai",
+      "synopsis": "AI Chat & Code",
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "tar.gz",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "Sinai-${version}-${arch}.${ext}",
+      "desktop": {
+        "entry": {
+          "Name": "Sinai",
+          "Comment": "AI Chat & Code",
+          "StartupWMClass": "Sinai"
+        }
+      },
+      "maintainer": "Gadtan x Gallen <gadtanbp@gmail.com>",
+      "syncDesktopName": true
+    },
+    "deb": {
+      "depends": [
+        "libnotify4",
+        "libxtst6",
+        "libnss3"
+      ],
+      "artifactName": "sinai_${version}_${arch}.${ext}"
+    }
+  },
+  "homepage": "mailto:gadtanbp@gmail.com",
+  "desktopName": "sinai.desktop"
+}

@@ -1,0 +1,19 @@
+Sinai __VERSION__ — semua installer
+===================================
+
+macOS/     Sinai-__VERSION__.dmg               macOS 10.15+ (Intel & Apple Silicon)
+Windows/   Sinai-Setup-__VERSION__-x64.exe     Windows 10/11, dipasang (disarankan)
+           Sinai-__VERSION__-Portable.exe      Windows tanpa instal
+Linux/     Sinai-__VERSION__-x86_64.AppImage   semua distro x64
+           sinai___VERSION___amd64.deb         Ubuntu/Debian
+           Sinai-__VERSION__-x64.tar.gz        arsip biasa
+Android/   Sinai-__VERSION__.apk               Android 8.0+
+iOS/       Sinai-__VERSION__.ipa atau proyek Xcode (lihat iOS/CARA-INSTAL.txt)
+
+Tiap folder berisi CARA-INSTAL.txt. SHA256SUMS.txt berisi sidik setiap berkas.
+
+Merilis ke pengguna: Sinerli › AdminDashboard › Rilis Sinai › Rilis baru
+(versi __VERSION__, Wajib) → unggah berkas dari folder ini per platform →
+Terbitkan. Semua Sinai versi lama akan meminta pembaruan otomatis.
+
+Copyright © 2026 Gadtan x Gallen. All rights reserved.

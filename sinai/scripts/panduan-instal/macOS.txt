@@ -1,0 +1,23 @@
+SINAI — AI Chat & Coding Agent untuk macOS
+==========================================
+
+File: Sinai-__VERSION__.dmg  (universal: Intel & Apple Silicon)
+Mendukung macOS 10.15 Catalina sampai terbaru.
+
+Cara memasang
+1. Buka Sinai-__VERSION__.dmg.
+2. Seret Sinai ke folder Applications.
+3. Pembukaan pertama — macOS bisa menolak karena "developer tidak dikenal":
+   - macOS 14 ke bawah: klik kanan Sinai.app > Open > Open
+   - macOS 15 ke atas: System Settings > Privacy & Security > Open Anyway
+   - atau di Terminal:  xattr -dr com.apple.quarantine /Applications/Sinai.app
+4. Tempel API key (DeepSeek, OpenAI, Claude, Gemini, OpenRouter, dll.),
+   klik "Hubungkan & deteksi model", pilih model, mulai.
+
+Data:     ~/Library/Application Support/Sinai
+API key:  disimpan di macOS Keychain (item "Sinai API Keys")
+
+Menghapus: seret /Applications/Sinai.app ke Trash. Data percakapan tetap ada
+di folder data di atas sampai Anda menghapusnya.
+
+Copyright © 2026 Gadtan x Gallen. All rights reserved.

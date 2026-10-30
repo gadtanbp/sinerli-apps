@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta http-equiv="Content-Security-Policy" content="✓ Sinerli Dokum: port dari tools/office/sinedoc
+✓ Sinerli Hitara: port dari tools/office/sineex
+✓ Sinerli Present: port dari tools/office/sineslide
+✓ sinerli dokum: core disalin
+✓ sinerli hitara: core disalin
+✓ sinerli present: core disalin
+✓ sinerli note: core disalin
+default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' https://sinerli.com https://*.sinerli.com blob: data:; worker-src 'self' blob:; frame-src 'self' blob: https://www.youtube-nocookie.com https://www.youtube.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="theme-color" content="#fbfaf6">
+  <title>Sinerli Note</title>
+  <link rel="stylesheet" href="core/sn-core.css">
+  <link rel="stylesheet" href="core/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="note.css">
+  <script>window.SN_APP = { id: 'note', name: 'Sinerli Note', icon: '✎', color: '#5e7a36', version: '1.0.0' };</script>
+  <script src="core/sn-core.js"></script>
+  <script src="core/sn-collab.js"></script>
+</head>
+<body>
+  <script src="note-i18n.js"></script>
+  <script src="note-store.js"></script>
+  <script src="note-editor.js"></script>
+  <script src="note-db.js"></script>
+  <script src="note-app.js"></script>
+  <script src="core/vendor/katex/katex.min.js" defer></script>
+  <script src="core/vendor/jszip.min.js" defer></script>
+  <script src="core/vendor/html2canvas.min.js" defer></script>
+  <script src="core/vendor/jspdf.umd.min.js" defer></script>
+</body>
+</html>

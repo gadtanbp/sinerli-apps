@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>id</string>
+	<key>CFBundleExecutable</key>
+	<string>Sinai</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	<key>CFBundleIdentifier</key>
+	<string>app.sinai.desktop</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Sinai</string>
+	<key>CFBundleDisplayName</key>
+	<string>Sinai</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>__VERSION__</string>
+	<key>CFBundleVersion</key>
+	<string>__BUILD__</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.15</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.developer-tools</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>NSSupportsAutomaticGraphicsSwitching</key>
+	<true/>
+	<key>NSRequiresAquaSystemAppearance</key>
+	<false/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Sinai menjalankan perintah AppleScript yang Anda setujui untuk mengonfigurasi sistem dan aplikasi.</string>
+	<key>NSDesktopFolderUsageDescription</key>
+	<string>Sinai membaca dan mengedit file proyek yang Anda pilih di folder Desktop.</string>
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>Sinai membaca dan mengedit file proyek yang Anda pilih di folder Dokumen.</string>
+	<key>NSDownloadsFolderUsageDescription</key>
+	<string>Sinai membaca dan mengedit file yang Anda pilih di folder Unduhan.</string>
+	<key>NSRemovableVolumesUsageDescription</key>
+	<string>Sinai membaca dan mengedit file proyek di drive eksternal yang Anda pilih.</string>
+	<key>NSNetworkVolumesUsageDescription</key>
+	<string>Sinai membaca dan mengedit file proyek di drive jaringan yang Anda pilih.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Sinai mentranskrip audio/video dan mengenali dikte suara dari mikrofon Anda, hanya saat Anda memintanya.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Sinai memakai mikrofon untuk dikte suara dan merekam audio, hanya saat Anda memintanya.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Sinai memakai kamera untuk mengambil foto atau video yang Anda lampirkan, hanya saat Anda membukanya.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Sinai membaca atau menambah kontak hanya untuk tugas yang Anda minta.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Sinai membaca atau menambah acara kalender hanya untuk tugas yang Anda minta.</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Sinai membaca atau menambah pengingat hanya untuk tugas yang Anda minta.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Sinai membaca atau menyimpan foto hanya untuk tugas yang Anda minta.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Sinai menyimpan gambar atau video ke Photos hanya saat Anda memintanya.</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Semua Berkas</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.item</string>
+				<string>public.content</string>
+				<string>public.folder</string>
+			</array>
+		</dict>
+	</array>
+	<key>NSServices</key>
+	<array>
+		<dict>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string>Kirim ke Sinai</string>
+			</dict>
+			<key>NSMessage</key>
+			<string>sinaiHandleFiles</string>
+			<key>NSPortName</key>
+			<string>Sinai</string>
+			<key>NSRequiredContext</key>
+			<dict/>
+			<key>NSSendTypes</key>
+			<array>
+				<string>NSFilenamesPboardType</string>
+				<string>public.file-url</string>
+			</array>
+		</dict>
+		<dict>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string>Tanyakan ke Sinai</string>
+			</dict>
+			<key>NSMessage</key>
+			<string>sinaiHandleText</string>
+			<key>NSPortName</key>
+			<string>Sinai</string>
+			<key>NSSendTypes</key>
+			<array>
+				<string>NSStringPboardType</string>
+				<string>public.plain-text</string>
+			</array>
+		</dict>
+	</array>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2026 Gadtan x Gallen. All rights reserved.</string>
+</dict>
+</plist>

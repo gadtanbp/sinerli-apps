@@ -1,0 +1,11 @@
+Sinai — AI Chat & Coding Agent untuk macOS
+Copyright © 2026 Gadtan x Gallen. All rights reserved.
+
+Perangkat lunak ini beserta kode sumber, desain, logo, dan dokumentasinya adalah
+milik Gadtan x Gallen. Dilarang menyalin, mengubah, mendistribusikan ulang, atau
+menghapus pemberitahuan hak cipta ini tanpa izin tertulis dari pemilik.
+
+Komponen pihak ketiga yang disertakan tetap tunduk pada lisensinya masing-masing:
+  - marked (MIT)          Resources/web/vendor/marked.js
+  - DOMPurify (Apache-2.0 / MPL-2.0)  Resources/web/vendor/purify.js
+  - highlight.js (BSD-3-Clause)       Resources/web/vendor/highlight.js

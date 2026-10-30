@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <script>
+(function (d) {
+    try {
+        var pref = localStorage.getItem('sinerli_lite') || 'auto';
+        var n = navigator, c = n.connection || n.mozConnection || n.webkitConnection || {};
+        var mem = n.deviceMemory, cores = n.hardwareConcurrency;
+        var weak = (mem && mem <= 2) || (mem && cores && cores <= 2) || c.saveData === true ||
+            c.effectiveType === '2g' || c.effectiveType === 'slow-2g';
+        if (pref === 'on' || (pref !== 'off' && weak)) {
+            d.documentElement.className += ' sinerli-lite low-end-device';
+            d.addEventListener('DOMContentLoaded', function () {
+                d.body.classList.add('sinerli-lite', 'low-end-device');
+            });
+        }
+        window.sinerliLite = { pref: pref, auto: !!weak };
+    } catch (e) {}
+})(document);
+</script>
+    <title>Sinerli Hitara</title>
+    <meta name="theme-color" content="#0f766e">
+    <link rel="icon" type="image/webp" href="assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Noto+Sans+SC:wght@400;700&family=Open+Sans:wght@400;700&family=Poppins:wght@400;600&family=Roboto:wght@400;700&family=Roboto+Mono&family=Source+Sans+3:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="core/vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="office/shared/office.css">
+    <link rel="stylesheet" href="office/sineex/sineex.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' ipc: http://ipc.localhost https://sinerli.com https://*.sinerli.com blob: data:; worker-src 'self' blob:; frame-src 'self' blob: https://www.youtube-nocookie.com https://www.youtube.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+    <link rel="stylesheet" href="core/sn-core.css">
+    <link rel="stylesheet" href="core/sn-office.css">
+    <script>window.SN_APP = {"id":"hitara","name":"Sinerli Hitara","icon":"▦","color":"#0f766e","version":"1.0.0"};</script>
+    <script src="core/sn-core.js"></script>
+    <script src="core/sn-loader.js"></script>
+</head>
+<body class="so-app sx-app">
+    <div class="so-loading" id="soLoading">
+        <div class="so-loading-logo has-img"><img src="assets/icon.png" alt="" width="66" height="66"></div>
+        <div class="so-loading-name">Sinerli Hitara</div>
+        <div class="so-loading-bar"></div>
+    </div>
+
+    <header id="soTitlebar"></header>
+    <div id="sxRibbon"></div>
+
+    <div class="sx-formulabar">
+        <div class="sx-namebox">
+            <input id="sxNameBox" type="text" spellcheck="false" autocomplete="off" data-lang-aria="x_name_box">
+            <button type="button" id="sxNameBoxBtn" tabindex="-1" data-lang-title="x_named_ranges"><i class="fas fa-caret-down"></i></button>
+        </div>
+        <div class="sx-fx-btns">
+            <button type="button" id="sxFxCancel" data-lang-title="c_cancel" disabled><i class="fas fa-xmark"></i></button>
+            <button type="button" id="sxFxEnter" data-lang-title="x_enter" disabled><i class="fas fa-check"></i></button>
+            <button type="button" id="sxFxInsert" data-lang-title="x_insert_function"><i class="fas fa-italic"></i><span>x</span></button>
+        </div>
+        <div class="sx-fx-wrap">
+            <textarea id="sxFormula" rows="1" spellcheck="false" autocomplete="off" data-lang-aria="x_formula_bar"></textarea>
+            <button type="button" id="sxFxExpand" tabindex="-1" data-lang-title="x_expand_formula"><i class="fas fa-chevron-down"></i></button>
+        </div>
+    </div>
+
+    <div class="sx-workspace">
+        <div class="sx-grid" id="sxGrid">
+            <canvas class="sx-canvas" id="sxCanvas"></canvas>
+            <div class="sx-scroll" id="sxScroll"><div class="sx-scroll-size" id="sxScrollSize"></div></div>
+            <div class="sx-layer" id="sxLayer">
+                <div class="sx-objects" id="sxObjects"></div>
+                <textarea class="sx-editor" id="sxEditor" spellcheck="false" autocomplete="off" autocapitalize="off" data-lang-aria="x_cell_editor"></textarea>
+                <div class="sx-ac" id="sxAc" hidden></div>
+                <div class="sx-hint" id="sxHint" hidden></div>
+                <div class="sx-note-pop" id="sxNotePop" hidden></div>
+            </div>
+        </div>
+        <aside class="so-pane sx-pane" id="sxPane" hidden>
+            <div class="so-pane-head">
+                <h3 class="so-pane-title" id="sxPaneTitle"></h3>
+                <button class="so-tb-btn sx-pane-close" type="button" id="sxPaneClose" data-lang-title="c_close"><i class="fas fa-xmark"></i></button>
+            </div>
+            <div class="so-pane-body" id="sxPaneBody"></div>
+        </aside>
+    </div>
+
+    <div class="sx-sheetbar" id="sxSheetbar">
+        <button type="button" class="sx-sb-btn" id="sxAddSheet" data-lang-title="x_new_sheet"><i class="fas fa-plus"></i></button>
+        <button type="button" class="sx-sb-btn" id="sxSheetList" data-lang-title="x_all_sheets"><i class="fas fa-bars"></i></button>
+        <div class="sx-tabs" id="sxTabs"></div>
+    </div>
+
+    <footer class="so-statusbar" id="sxStatus">
+        <span class="so-sb-item" id="sxStMode"></span>
+        <span class="so-sb-spacer"></span>
+        <button class="so-sb-item" type="button" id="sxStAgg"></button>
+        <button class="so-sb-item so-sb-hide-mobile" type="button" id="sxStGrid" data-tip="x_gridlines"><i class="fas fa-table-cells"></i></button>
+        <div class="so-zoom">
+            <button type="button" id="sxZoomOut" data-lang-title="c_zoom_out"><i class="fas fa-minus"></i></button>
+            <input type="range" id="sxZoomRange" min="25" max="400" step="5" value="100" data-lang-aria="c_zoom">
+            <button type="button" id="sxZoomIn" data-lang-title="c_zoom_in"><i class="fas fa-plus"></i></button>
+            <button type="button" class="so-zoom-val" id="sxZoomVal">100%</button>
+        </div>
+    </footer>
+
+    <div class="sx-print-root" id="sxPrintRoot"></div>
+
+    <script type="text/sn-deferred" data-src="office/shared/office-i18n.js"></script>
+    <script type="text/sn-deferred" data-src="office/sineex/sineex-i18n.js"></script>
+    <script type="text/sn-deferred" data-src="office/sineex/sineex-i18n-2.js"></script>
+    <script type="text/sn-deferred" data-src="office/sineex/sineex-i18n-fn.js"></script>
+    <script type="text/sn-deferred" data-src="office/shared/office-core.js"></script>
+    <script type="text/sn-deferred" data-src="office/shared/office-collab-ops.js"></script>
+    <script type="text/sn-deferred" data-src="office/shared/office-collab-ops.js"></script>
+    <script type="text/sn-deferred" data-src="office/shared/office-collab.js"></script>
+    <script type="text/sn-deferred" data-src="office/sineex/sineex-formula.js"></script>
+    <script type="text/sn-deferred" data-src="office/sineex/sineex-functions.js"></script>
+    <script type="text/sn-deferred" data-src="office/sineex/sineex-functions-2.js"></script>
+    <script type="text/sn-deferred" data-src="office/sineex/sineex-model.js"></script>
+    <script type="text/sn-deferred" data-src="office/sineex/sineex-app.js"></script>
+    <script type="text/sn-deferred" data-src="office/sineex/sineex-render.js"></script>
+    <script type="text/sn-deferred" data-src="office/sineex/sineex-input.js"></script>
+    <script type="text/sn-deferred" data-src="office/sineex/sineex-cmds.js"></script>
+    <script type="text/sn-deferred" data-src="office/sineex/sineex-data.js"></script>
+    <script type="text/sn-deferred" data-src="office/sineex/sineex-charts.js"></script>
+    <script type="text/sn-deferred" data-src="office/sineex/sineex-io.js"></script>
+    <script type="text/sn-deferred" data-src="office/shared/office-ai.js"></script>
+    <script type="text/sn-deferred" data-src="office/sineex/sineex-ai.js"></script>
+    <script type="text/sn-deferred" data-src="office/sineex/sineex-ribbon.js"></script>
+
+</body>
+</html>

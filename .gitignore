@@ -1,0 +1,11 @@
+build/
+dist/
+node_modules/
+.DS_Store
+sinai/desktop/node_modules/
+sinai/mobile/android/keys/
+*.jks
+*.keystore
+*.p12
+sftp.json
+.env*

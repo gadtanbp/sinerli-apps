@@ -1,0 +1,40 @@
+SINAI — AI Chat & Coding Agent untuk Windows
+============================================
+
+Mendukung Windows 10 dan 11 (64-bit).
+
+Pilih salah satu:
+
+A. Installer (disarankan) — Sinai-Setup-__VERSION__-x64.exe
+   1. Klik dua kali file tersebut.
+   2. Jika muncul "Windows protected your PC" (SmartScreen), klik
+      "More info" lalu "Run anyway". Ini muncul karena aplikasi belum
+      ditandatangani sertifikat penerbit.
+   3. Ikuti langkah installer (bisa memilih folder instalasi).
+      Shortcut dibuat di Desktop dan Start Menu.
+
+B. Portable (tanpa instal) — Sinai-__VERSION__-Portable.exe
+   Klik dua kali untuk langsung menjalankan; cocok untuk flashdisk.
+
+Pertama kali dibuka: tempel API key, klik "Hubungkan & deteksi model",
+pilih model, mulai.
+
+Data:     %APPDATA%\Sinai
+API key:  dienkripsi dengan Windows DPAPI (hanya akun Windows Anda)
+
+Disarankan (opsional)
+- Git for Windows (https://git-scm.com) — agen mode Code memakai Git Bash
+  sehingga perintah seperti grep, sed, head berfungsi. Tanpa ini agen
+  memakai PowerShell.
+- Tesseract OCR  — membaca teks dari gambar & PDF hasil scan.
+- 7-Zip          — membuka arsip .7z/.rar dan zip berkata sandi.
+- qpdf           — membuka PDF terkunci & mengenkripsi PDF.
+
+Fitur khusus macOS yang tidak ada di Windows: dikte suara langsung,
+transkripsi audio, Quick Look, dan integrasi Kalender/Kontak/Mail/Shortcuts.
+
+Menghapus: Settings > Apps > Installed apps > Sinai > Uninstall
+(versi portable: cukup hapus file .exe). Data di %APPDATA%\Sinai tetap ada
+sampai Anda menghapusnya.
+
+Copyright © 2026 Gadtan x Gallen. All rights reserved.

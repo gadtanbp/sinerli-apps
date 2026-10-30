@@ -1,0 +1,18 @@
+Sinai __VERSION__ untuk iPhone & iPad
+=====================================
+
+iOS tidak mengizinkan memasang aplikasi dari berkas yang diunduh. Sinai iOS
+dipasang lewat TestFlight / App Store (atau Ad Hoc untuk perangkat terdaftar).
+
+Membuat build (di Mac dengan Xcode 15+ dan akun Apple Developer):
+1. Ekstrak Sinai-__VERSION__-iOS-Xcode.zip, buka ios/Sinai.xcodeproj.
+2. Target Sinai → Signing & Capabilities → pilih Team Anda.
+3. Product → Archive → Distribute App → TestFlight & App Store.
+   (atau dari Terminal: TEAM=<Team ID> METHOD=app-store mobile/ios/build-ios.sh)
+4. Di Sinerli › AdminDashboard › Rilis Sinai › iOS → "Tautan", isi tautan
+   TestFlight (https://testflight.apple.com/join/...) atau App Store.
+
+Setelah terpasang: buka Sinai → "Masuk dengan Sinerli". Bila ada versi wajib,
+Sinai membuka tautan TestFlight/App Store untuk memperbarui.
+
+Copyright © 2026 Gadtan x Gallen. All rights reserved.

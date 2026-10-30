@@ -1,0 +1,12 @@
+#!/usr/bin/python3 -I
+# Sinai — Copyright © 2026 Gadtan x Gallen. All rights reserved.
+# Minimal xz (stdin -> stdout) for GNU tar -J on macOS without xz installed.
+import sys, lzma, shutil
+args = [a for a in sys.argv[1:] if a.startswith('-')]
+dec = any(a in ('-d', '--decompress') or (a.startswith('-') and not a.startswith('--') and 'd' in a) for a in args)
+src, dst = sys.stdin.buffer, sys.stdout.buffer
+if dec:
+    dst.write(lzma.decompress(src.read()))
+else:
+    with lzma.LZMAFile(dst, 'wb', format=lzma.FORMAT_XZ, preset=6) as f:
+        shutil.copyfileobj(src, f, 1 << 20)

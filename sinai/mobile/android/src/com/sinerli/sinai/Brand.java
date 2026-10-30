@@ -1,0 +1,40 @@
+// Sinai — Copyright © 2026 Gadtan x Gallen. All rights reserved.
+package com.sinerli.sinai;
+
+import java.nio.charset.StandardCharsets;
+
+/** Pemberitahuan hak cipta, terenkode & dicek checksum (data & algoritma sama dengan Sources/Brand.swift). */
+final class Brand {
+    private static final int[] KEY = {0x9e, 0x3b, 0xd4, 0x71, 0xc2, 0x58, 0xe7, 0x0d, 0xa6};
+    private static final int[] OWNER = {0x36, 0x45, 0xfc, 0xce, 0xdf, 0x21, 0x04, 0xac, 0x80, 0x21, 0x6c, 0x9f, 0xff, 0x34, 0x08};
+    private static final int[] LABEL = {0xb3, 0x8d, 0xb8, 0xfd, 0xdf, 0x2b, 0x50, 0xb5, 0xce, 0x46, 0x75, 0xd3, 0xd4, 0x30, 0x0a, 0x23,
+        0x98, 0x39};
+    private static final int[] LEGAL = {0x32, 0x4b, 0xe8, 0xc3, 0xcc, 0x26, 0x43, 0xbc, 0xd4, 0x46, 0xcf, 0x5a, 0xb3, 0x63, 0x56, 0x7d,
+        0xcb, 0x77, 0x18, 0x17, 0xae, 0x18, 0x09, 0x73, 0x56, 0x72, 0x5e, 0x73, 0x3e, 0x49, 0x29, 0x66,
+        0x5a, 0x4f, 0x33, 0x24, 0x41, 0x2c, 0x1c, 0x2c, 0x73, 0x44, 0xe0, 0x4c, 0x7f, 0x22, 0xdb, 0x72,
+        0x44, 0x48, 0xa8, 0xc5, 0x24, 0x57, 0xd5};
+    private static final long OWNER_SUM = 0x1f54753f972257b1L, LABEL_SUM = 0xf5c6ff922a1a5e22L, LEGAL_SUM = 0x9cfe2daeca9cdcabL;
+
+    private static String decode(int[] b) {
+        byte[] out = new byte[b.length];
+        for (int i = 0; i < b.length; i++) out[i] = (byte) (b[i] ^ KEY[(i * 7 + 3) % KEY.length] ^ ((i * 31) & 0xff));
+        return new String(out, StandardCharsets.UTF_8);
+    }
+
+    static long fnv1a(String s) {
+        long h = 0xcbf29ce484222325L;
+        for (byte b : s.getBytes(StandardCharsets.UTF_8)) { h ^= (b & 0xff); h *= 0x100000001b3L; }
+        return h;
+    }
+
+    static String owner() { return decode(OWNER); }
+    static String label() { return decode(LABEL); }
+    static String legal() { return decode(LEGAL); }
+
+    static boolean intact() {
+        String o = owner(), l = label(), g = legal();
+        return fnv1a(o) == OWNER_SUM && fnv1a(l) == LABEL_SUM && fnv1a(g) == LEGAL_SUM && l.endsWith(o) && g.contains(o);
+    }
+
+    private Brand() { }
+}

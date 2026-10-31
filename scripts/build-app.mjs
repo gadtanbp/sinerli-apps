@@ -151,7 +151,9 @@ function signAndroid(proj) {
 function tauri(proj, args, env) { run('npx', ['--yes', '@tauri-apps/cli@2'].concat(args, extra), proj, env); }
 function collect(id, proj) {
   const out = path.join(ROOT, 'dist', id);
-  const bundles = path.join(proj, 'src-tauri', 'target');
+  // CARGO_TARGET_DIR bersama: hanya ambil berkas milik aplikasi ini.
+  const bundles = process.env.CARGO_TARGET_DIR || path.join(proj, 'src-tauri', 'target');
+  const mine = APPS[id].name;
   fs.mkdirSync(out, { recursive: true });
   const exts = /\.(dmg|msi|exe|AppImage|deb|rpm|apk|aab)$/;
   (function walk(d) {
@@ -159,7 +161,7 @@ function collect(id, proj) {
     for (const e of fs.readdirSync(d, { withFileTypes: true })) {
       const p = path.join(d, e.name);
       if (e.isDirectory()) { if (!/deps|build|incremental|\.fingerprint/.test(e.name)) walk(p); }
-      else if (exts.test(e.name) && /bundle|apk|outputs/.test(p)) { fs.copyFileSync(p, path.join(out, e.name)); console.log('  →', path.relative(ROOT, path.join(out, e.name))); }
+      else if (exts.test(e.name) && /bundle|apk|outputs/.test(p) && (!process.env.CARGO_TARGET_DIR || e.name.includes(mine))) { fs.copyFileSync(p, path.join(out, e.name)); console.log('  →', path.relative(ROOT, path.join(out, e.name))); }
     }
   })(bundles);
   (function walk(d) { if (!fs.existsSync(d)) return; for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) walk(p); else if (/\.(apk|aab)$/.test(e.name)) fs.copyFileSync(p, path.join(out, e.name)); } })(path.join(proj, 'src-tauri', 'gen', 'android', 'app', 'build', 'outputs'));

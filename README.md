@@ -51,8 +51,10 @@ Build installer (butuh Node 20+ dan Rust; Linux juga butuh `libwebkit2gtk-4.1-de
 node scripts/build-app.mjs all build
 ```
 
+APK Android tanpa Gradle/NDK (shell Java ringan, `_shell/android/`):
+
 ```bash
-node scripts/build-app.mjs note android-apk
+scripts/build-android.sh
 ```
 
 Cara termudah untuk **semua platform sekaligus**: jadikan folder ini repositori GitHub, lalu jalankan workflow **Build Sinerli Apps** (`.github/workflows/build.yml`) — macOS (universal), Windows, Linux, dan Android dibangun di mesin masing-masing. Hasil di `dist/<app>/`.
@@ -86,6 +88,6 @@ Batasan yang jujur ada di `docs/SECURITY.md` dan bagian *Status* di bawah.
 | | Status |
 |---|---|
 | Uji di browser (harness lokal) | Login → app terbuka untuk Dokum, Hitara, Present, Note, Rupa; Note: menu `/`, shortcut, tugas, sinkron 2 tab ±360 ms; Rupa: template alur, geser + snapping + konektor ikut, sticky, inspektor, foto (preset, kuas, tongkat ajaib, hapus seleksi); Sinai: tema klasik & layar login. |
-| Build native | **macOS Intel:** kelima app Tauri berhasil dikompilasi (4–5,7 MB) dan terbuka sampai layar login; hasilnya di `dist/macos-intel/`. Windows, Linux, Android, dan macOS universal/.dmg belum dibuild (pakai GitHub Actions). |
+| Build native | Semua hasil ada di `download/` (+ `SHA256SUMS.txt`): `.dmg` universal & APK kelima app, serta Sinai untuk macOS, Windows, Linux, Android. **Windows & Linux kelima app Tauri belum dibuild** (butuh mesin Windows/Linux). APK Android belum dicoba di perangkat. |
 | Server | Sudah di-deploy ke sinerli.com (30 Okt 2026). Login Sinerli Note dari app macOS berhasil dengan akun sungguhan. |
 | Sinai | Pembaruan otomatis menunjuk `/sinai/update` yang belum ada di server (dianggap "tidak ada pembaruan" sampai rilis Sinai dibuat). |

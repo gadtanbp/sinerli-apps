@@ -103,7 +103,7 @@
     // Tauri juga berjalan di Android: login lewat deep link (bukan loopback) di ponsel.
     var onAndroid = /Android/i.test(navigator.userAgent || '');
     var platform = tauri ? (onAndroid ? 'android' : 'desktop') : android ? 'android' : dev ? 'dev' : 'web';
-    return { invoke: invoke, on: on, available: platform !== 'web', platform: platform, mobile: platform === 'android' || !!(dev && dev.mobile) };
+    return { invoke: invoke, on: on, available: platform !== 'web', platform: platform, mobile: (!!tauri && onAndroid) || !!(dev && dev.mobile) };   // shell Java Android memakai loopback seperti desktop
   })();
 
   /* ================================================================ i18n */
@@ -188,6 +188,7 @@
   SN.theme.apply();
   doc.documentElement.lang = SN.lang;
   doc.documentElement.setAttribute('data-sn-app', APP.id);
+  if (APP.color) doc.documentElement.style.setProperty('--sn-accent', APP.color);   // tombol login mengikuti warna aplikasi
 
   /* ================================================================ auth */
   function base() { return String(SN.store.get('sn_base', DEFAULT_BASE)).replace(/\/+$/, ''); }

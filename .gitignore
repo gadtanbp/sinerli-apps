@@ -9,3 +9,7 @@ sinai/mobile/android/keys/
 *.p12
 sftp.json
 .env*
+download/
+_shell/android/keys/
+keystore.properties
+sinai/Download all/

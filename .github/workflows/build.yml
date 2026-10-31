@@ -1,4 +1,5 @@
-# Sinerli Apps — build installer semua platform (macOS, Windows, Linux, Android).
+# Sinerli Apps — installer Windows & Linux. macOS & Android dibuild di Mac:
+# scripts/build-local-mac.sh dan scripts/build-android.sh.
 # Jalankan dari tab Actions → "Build Sinerli Apps" → Run workflow.
 # Rahasia penandatanganan (opsional, lihat docs/SIGNING.md) diisi di Settings → Secrets.
 name: Build Sinerli Apps
@@ -16,61 +17,22 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-14, windows-2022, ubuntu-22.04]
+        os: [windows-2022, ubuntu-22.04]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
       - uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: ${{ matrix.os == 'macos-14' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
       - name: Linux deps
         if: matrix.os == 'ubuntu-22.04'
         run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf libsecret-1-dev libdbus-1-dev pkg-config
       - name: Build
         shell: bash
         env:
-          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
-          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
-          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
-          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
           WINDOWS_CERT_THUMBPRINT: ${{ secrets.WINDOWS_CERT_THUMBPRINT }}
         run: node scripts/build-app.mjs "${{ github.event.inputs.app || 'all' }}" build
       - uses: actions/upload-artifact@v4
         with:
           name: sinerli-apps-${{ matrix.os }}
-          path: dist/**
-
-  android:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - uses: actions/setup-java@v4
-        with: { distribution: temurin, java-version: 17 }
-      - uses: android-actions/setup-android@v3
-      - run: sdkmanager "ndk;27.0.12077973" "platforms;android-34" "build-tools;34.0.0"
-      - uses: dtolnay/rust-toolchain@stable
-        with: { targets: 'aarch64-linux-android,armv7-linux-androideabi,i686-linux-android,x86_64-linux-android' }
-      - name: Build APK
-        env:
-          NDK_HOME: ${{ env.ANDROID_HOME }}/ndk/27.0.12077973
-          ANDROID_KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_B64 }}
-          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
-          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
-        shell: bash
-        run: |
-          if [ -n "$ANDROID_KEYSTORE_B64" ]; then
-            echo "$ANDROID_KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/sinerli.jks"
-            export ANDROID_KEYSTORE="$RUNNER_TEMP/sinerli.jks"
-          fi
-          node scripts/build-app.mjs "${{ github.event.inputs.app || 'all' }}" android-apk
-      - uses: actions/upload-artifact@v4
-        with:
-          name: sinerli-apps-android
           path: dist/**

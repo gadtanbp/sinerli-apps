@@ -1,0 +1,11 @@
+name: Tes runner
+on: workflow_dispatch
+jobs:
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ok
+  windows:
+    runs-on: windows-latest
+    steps:
+      - run: echo ok
